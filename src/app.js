@@ -12,8 +12,8 @@ app.use(morgan("dev"));
 
 app.use("/api/v1", router);
 
-// app.listen(port, () => {
-//   console.log(`Up on localhost: ${port}`);
-// });
+app.get("/", (req, res) => {
+  res.send("A app tá funfando! :D");
+});
 
 export default app;
