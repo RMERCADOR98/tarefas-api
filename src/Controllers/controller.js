@@ -4,7 +4,9 @@ import Tarefas from "../Models/bloco.model";
 db.sync();
 
 const todasTarefas = async (req, res) => {
-  const data = await Tarefas.findAll();
+  const data = await Tarefas.findAll().catch((err) => {
+    throw new Error(err);
+  });
 
   res.json(data);
 };
@@ -14,6 +16,8 @@ const fazerTarefas = async (req, res) => {
     where: {
       estado: "fazer",
     },
+  }).catch((err) => {
+    throw new Error(err);
   });
   res.json(data);
 };
@@ -22,6 +26,8 @@ const fazendoTarefas = async (req, res) => {
     where: {
       estado: "fazendo",
     },
+  }).catch((err) => {
+    throw new Error(err);
   });
   res.json(data);
 };
@@ -30,6 +36,8 @@ const feitoTarefas = async (req, res) => {
     where: {
       estado: "feito",
     },
+  }).catch((err) => {
+    throw new Error(err);
   });
   res.json(data);
 };
@@ -42,6 +50,8 @@ const criarTarefa = async (req, res) => {
   const data = await Tarefas.create({
     tarefa: tarefa,
     estado: estado,
+  }).catch((err) => {
+    throw new Error(err);
   });
 
   res.json(data);
@@ -54,6 +64,8 @@ const apagarTarefa = async (req, res) => {
     where: {
       id: id,
     },
+  }).catch((err) => {
+    throw new Error(err);
   });
   res.sendStatus(200);
 };
@@ -65,6 +77,8 @@ const editarTarefa = async (req, res) => {
     where: {
       id: id,
     },
+  }).catch((err) => {
+    throw new Error(err);
   });
   res.json(data);
 };
