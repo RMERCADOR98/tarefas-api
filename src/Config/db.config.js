@@ -1,6 +1,18 @@
 import Sequelize from "sequelize";
 
-// Option 2: Passing parameters separately (other dialects)
-const db = new Sequelize(process.env.DATABASE_URL);
+let db;
+
+process.env.NODE_ENV === "dev"
+  ? (db = new Sequelize(process.env.DATABASE_URL, {
+      dialect: "postgres",
+      protocol: "postgres",
+      dialectOptions: {
+        ssl: {
+          require: true,
+          rejectUnauthorized: false,
+        },
+      },
+    }))
+  : (db = new Sequelize(process.env.DATABASE_URL));
 
 export default db;

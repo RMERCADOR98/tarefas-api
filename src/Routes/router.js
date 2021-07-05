@@ -1,4 +1,4 @@
-import { Router } from "express";
+import express from "express";
 import {
   todasTarefas,
   criarTarefa,
@@ -9,7 +9,7 @@ import {
   feitoTarefas,
 } from "../Controllers/controller";
 
-const router = Router();
+const router = express.Router();
 
 router.get("/", todasTarefas);
 router.get("/fazerTarefas", fazerTarefas);
